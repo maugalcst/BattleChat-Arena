@@ -1,6 +1,4 @@
-﻿using BattleChat_Arena.Models;
-
-namespace BattleChat_Arena
+﻿namespace BattleChat_Arena.Models
 {
     public class Player
     {
@@ -44,14 +42,45 @@ namespace BattleChat_Arena
 
         public bool CanExecuteCommand()
         {
-            if (CurrentState == PlayerState.Freezed) 
+
+            var rand = new Random();
+
+            if (CurrentState == PlayerState.Freezed)
                 return false;
 
             else if (CurrentState == PlayerState.Armored && StateTurnsRemaining == 2)
                 return false;
 
+            else if (CurrentState == PlayerState.Confused)
+            {
+                ReduceStateTurn();
+
+                var dice = rand.Next(0, 2);
+
+                if (dice == 0)
+                {
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+
+            }
+
             else
                 return true; 
+        }
+
+        private void ReduceStateTurn()
+        {
+            StateTurnsRemaining--;
+
+            if (StateTurnsRemaining <= 0)
+            {
+                CurrentState = PlayerState.Normal;
+            }
         }
 
     }
