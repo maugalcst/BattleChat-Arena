@@ -1,0 +1,6 @@
+@BattleChat_Arena_HostAddress = http://localhost:5208
+
+GET {{BattleChat_Arena_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
