@@ -31,12 +31,7 @@
 
             }
 
-            StateTurnsRemaining--;
-
-            if (StateTurnsRemaining <= 0)
-            {
-                CurrentState = PlayerState.Normal;
-            }
+            ReduceStateTurn();
                     
         }
 
